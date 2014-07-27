@@ -21,7 +21,10 @@ public class Company {
     }
 
     public String toSQL() {
-        return "INSERT INTO company (identifier, name, prefix, created_user_id, created_time, modified_user_id) VALUES ('" + identifier + "', '" + name + "', '" + prefix + "', 1, NOW(), 1);\n";
+        return "INSERT INTO company " +
+                "(identifier, name, prefix, created_user_id, created_time, modified_user_id) " +
+                "VALUES " +
+                "('" + identifier + "', '" + name + "', '" + prefix + "', 1, NOW(), 1);\n";
     }
 
 
