@@ -17,14 +17,14 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{identifier='" + identifier + "', name='" + name + "', prefix='" + prefix + "'}";
+        return "Company{identifier='" + identifier + "', name=\"" + name + "\", prefix='" + prefix + "'}";
     }
 
     public String toSQL() {
         return "INSERT INTO company " +
                 "(identifier, name, prefix, created_user_id, created_time, modified_user_id) " +
                 "VALUES " +
-                "('" + identifier + "', '" + name + "', '" + prefix + "', 1, NOW(), 1);\n";
+                "('" + identifier + "', \"" + name + "\", '" + prefix + "', 1, NOW(), 1);\n";
     }
 
 
