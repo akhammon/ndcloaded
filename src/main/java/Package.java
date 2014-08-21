@@ -6,7 +6,7 @@
  * Important Considerations Regarding the NDC Directory
  * <p/>
  * (NOTE: New field added 8/23/2013, ProductID)
- * <p/>
+
  * <p/>
  * NDC Directory is updated daily.
  * <p/>
@@ -53,31 +53,36 @@
  * <p/>
  * Created by Keene on 7/26/2014.
  */
-public class Gtin {
+public class Package {
 
+    /**
+     * ProductID  Text/string.
+     * <p/>
+     * ProductID is a concatenation of the NDC product code and SPL documentID. It is included to help prevent duplicate
+     * rows from appearing when joining the product and package files together.  It has no regulatory value or
+     * significance.
+     */
     private String productId;
-    private String identifier;
-    private String prefix;
 
     /**
-     *
-     * @param identifier
-     * @param prefix
-     * @param productId
+     * ProductNDC  Text/string.
+     * The labeler code and product code segments of the National Drug Code number, separated by a hyphen. Asterisks are
+     * no longer used or included within the product code segment to indicate certain configurations of the NDC.
      */
-    public Gtin(String identifier, String prefix, String productId) {
-        this.identifier = identifier;
-        this.prefix = prefix;
-        this.productId = productId;
-    }
+    private String productNDC;
 
     /**
-     *
-     * @return
+     * NDCPackageCode Text/string
+     * The labeler code, product code, and package code segments of the National Drug Code number, separated by hyphens.
+     * Asterisks are no longer used or included within the product and package code segments to indicate certain
+     * configurations of the NDC.
      */
-    public String toSQL() {
-        return "INSERT INTO gtin (identifier, company_id, product_id, tag_type_id, print_template_id, created_user_id, created_time, modified_user_id) " +
-                "VALUES ('" + identifier + "', (SELECT id FROM company WHERE prefix='" + prefix + "'), (SELECT id FROM product_temp WHERE identifier='" + productId + "'), 3, NULL, 1, NOW(), 1);\n";
+    private String ndcPackageCode;
 
-    }
+    /**
+     * PackageDescription   Text/string
+     * A description of the size and type of packaging in sentence form. Multilevel packages will have the descriptions
+     * concatenated together.  For example: 4 BOTTLES in 1 CARTON/100 TABLETS in 1 BOTTLE.
+     */
+    private String packageDescription;
 }
